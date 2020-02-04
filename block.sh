@@ -107,7 +107,11 @@ wget -nv -P /tmp/ipblocks/ipv6/ https://www.ipdeny.com/ipv6/ipaddresses/aggregat
 echo "Adding each IP address from the downloaded lists into the respective ipsets..."
 echo "Great Britain..."
 for i in $(cat /tmp/ipblocks/ipv4/gb-aggregated.zone ); do ipset -A greatbritain-ipv4 $i; done
+localserver_ipv4=`dig -4 @resolver1.opendns.com A myip.opendns.com +short`
+ipset -A greatbritain-ipv4 $localserver_ipv4
 for i in $(cat /tmp/ipblocks/ipv6/gb-aggregated.zone ); do ipset -A greatbritain-ipv6 $i; done
+localserver_ipv6=`dig -6 @resolver1.opendns.com AAAA myip.opendns.com +short`
+ipset -A greatbritain-ipv6 $localserver_ipv6
 echo "China..."
 for i in $(cat /tmp/ipblocks/ipv4/cn-aggregated.zone ); do ipset -A china-ipv4 $i; done
 for i in $(cat /tmp/ipblocks/ipv6/cn-aggregated.zone ); do ipset -A china-ipv6 $i; done
