@@ -15,4 +15,7 @@ Blocks *all* IPv4 and IPv6 traffic from the following countries:
 - Pakistan
 - Algeria
 
-Also blocks all incoming SSH connections unless they are from Great Britain.
+Then blocks all incoming SSH connections unless they are from Great Britain.
+
+Included is a debugging script to test SSH server security.
+Example run: python ssh-audit.py -p <port> <hostname>
