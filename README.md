@@ -1,4 +1,4 @@
-# IPtables Malicious Countries
+# iptables Malicious Countries
 Block Malicious Countries with ipset Blocklists
 
 
