@@ -18,7 +18,4 @@ Blocks *all* IPv4 and IPv6 traffic from the following countries:
 Then blocks all incoming SSH connections unless they are from Great Britain.
 
 
-Also included is a debugging script to test SSH server security.
-
-Example run:
-> python ssh-audit.py -p port hostname
+Also included is a debugging script to test SSH server security. Example run: `python ssh-audit.py -p <port> <hostname>`
