@@ -145,12 +145,33 @@ for i in $(cat /tmp/ipblocks/ipv6/dz-aggregated.zone ); do ipset -A algeria-ipv6
 
 # This can be removed if not needed. Useful for debugging.
 echo "Adding local server's external addresses to Great Britain..."
-localserver_ipv4=`dig -4 @resolver1.opendns.com A myip.opendns.com +short`
-echo $localserver_ipv4
-ipset -A greatbritain-ipv4 $localserver_ipv4
-localserver_ipv6=`dig -6 @resolver1.opendns.com AAAA myip.opendns.com +short`
-echo $localserver_ipv6
-ipset -A greatbritain-ipv6 $localserver_ipv6
+whitelist=`dig -4 @resolver1.opendns.com A myip.opendns.com +short`
+echo $whitelist
+ipset -A greatbritain-ipv4 $whitelist
+whitelist=`dig -6 @resolver1.opendns.com AAAA myip.opendns.com +short`
+echo $whitelist
+ipset -A greatbritain-ipv6 $whitelist
+
+echo "Adding additional whitelisted entries to Great Britain..."
+whitelist=`dig -4 @10.30.0.94 A fieldendroad.uk.to +short`
+echo $whitelist
+ipset -A greatbritain-ipv4 $whitelist
+whitelist=`dig -4 @10.30.0.94 A kingswearcrescent.uk.to +short`
+echo $whitelist
+ipset -A greatbritain-ipv4 $whitelist
+
+whitelist=`213.212.106.140`
+echo $whitelist
+ipset -A greatbritain-ipv4 $whitelist
+whitelist=`213.212.67.156`
+echo $whitelist
+ipset -A greatbritain-ipv4 $whitelist
+whitelist=`195.92.116.147`
+echo $whitelist
+ipset -A greatbritain-ipv4 $whitelist
+whitelist=`195.224.192.137`
+echo $whitelist
+ipset -A greatbritain-ipv4 $whitelist
 
 
 echo "Restore iptables rules..."
