@@ -13,6 +13,7 @@ iptables -D INPUT -m set --match-set thailand-ipv4 src -j DROP
 iptables -D INPUT -m set --match-set indonesia-ipv4 src -j DROP
 iptables -D INPUT -m set --match-set pakistan-ipv4 src -j DROP
 iptables -D INPUT -m set --match-set algeria-ipv4 src -j DROP
+iptables -D INPUT -m set --match-set digitalocean-ipv4 src -j DROP
 
 ip6tables -D INPUT -p tcp --dport 2222 -m set ! --match-set greatbritain-ipv6 src -j DROP
 ip6tables -D INPUT -m set --match-set china-ipv6 src -j DROP
@@ -38,6 +39,7 @@ iptables -D DOCKER-USER -m set --match-set thailand-ipv4 src -j DROP
 iptables -D DOCKER-USER -m set --match-set indonesia-ipv4 src -j DROP
 iptables -D DOCKER-USER -m set --match-set pakistan-ipv4 src -j DROP
 iptables -D DOCKER-USER -m set --match-set algeria-ipv4 src -j DROP
+iptables -D DOCKER-USER -m set --match-set digitalocean-ipv4 src -j DROP
 
 ipset destroy
 
@@ -67,6 +69,7 @@ ipset create pakistan-ipv4 hash:net family inet
 ipset create pakistan-ipv6 hash:net family inet6
 ipset create algeria-ipv4 hash:net family inet
 ipset create algeria-ipv6 hash:net family inet6
+ipset create digitalocean-ipv4 hash:net family inet
 
 
 echo "Removing any old zone files that might exist from previous runs of this script..."
