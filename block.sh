@@ -141,6 +141,8 @@ for i in $(cat /tmp/ipblocks/ipv6/pk-aggregated.zone ); do ipset -A pakistan-ipv
 echo "Algeria..."
 for i in $(cat /tmp/ipblocks/ipv4/dz-aggregated.zone ); do ipset -A algeria-ipv4 $i; done
 for i in $(cat /tmp/ipblocks/ipv6/dz-aggregated.zone ); do ipset -A algeria-ipv6 $i; done
+echo "Digital Ocean..."
+for i in $(cat digitalocean-ipv4.txt ); do ipset -A digitalocean-ipv4 $i; done
 
 
 # This can be removed if not needed. Useful for debugging.
@@ -186,6 +188,7 @@ iptables -I INPUT -m set --match-set thailand-ipv4 src -j DROP
 iptables -I INPUT -m set --match-set indonesia-ipv4 src -j DROP
 iptables -I INPUT -m set --match-set pakistan-ipv4 src -j DROP
 iptables -I INPUT -m set --match-set algeria-ipv4 src -j DROP
+iptables -I INPUT -m set --match-set digitalocean-ipv4 src -j DROP
 iptables -I INPUT -p tcp --dport 2222 -m set ! --match-set greatbritain-ipv4 src -j DROP
 
 ip6tables -I INPUT -m set --match-set china-ipv6 src -j DROP
@@ -212,5 +215,6 @@ iptables -I DOCKER-USER -m set --match-set thailand-ipv4 src -j DROP
 iptables -I DOCKER-USER -m set --match-set indonesia-ipv4 src -j DROP
 iptables -I DOCKER-USER -m set --match-set pakistan-ipv4 src -j DROP
 iptables -I DOCKER-USER -m set --match-set algeria-ipv4 src -j DROP
+iptables -I DOCKER-USER -m set --match-set digitalocean-ipv4 src -j DROP
 
 #/sbin/iptables-restore < /etc/iptables.firewall.rules
