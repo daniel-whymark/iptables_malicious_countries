@@ -158,23 +158,23 @@ echo $whitelist
 ipset -A greatbritain-ipv6 $whitelist
 
 echo "Adding additional whitelisted entries to Great Britain..."
-whitelist=`dig -4 @10.30.0.94 A fieldendroad.uk.to +short`
+whitelist=`dig -4 A fieldendroad.uk.to +short`
 echo $whitelist
 ipset -A greatbritain-ipv4 $whitelist
-whitelist=`dig -4 @10.30.0.94 A kingswearcrescent.uk.to +short`
+whitelist=`dig -4 A kingswearcrescent.uk.to +short`
 echo $whitelist
 ipset -A greatbritain-ipv4 $whitelist
 
-whitelist=`213.212.106.140`
+whitelist="213.212.106.140"
 echo $whitelist
 ipset -A greatbritain-ipv4 $whitelist
-whitelist=`213.212.67.156`
+whitelist="213.212.67.156"
 echo $whitelist
 ipset -A greatbritain-ipv4 $whitelist
-whitelist=`195.92.116.147`
+whitelist="195.92.116.147"
 echo $whitelist
 ipset -A greatbritain-ipv4 $whitelist
-whitelist=`195.224.192.137`
+whitelist="195.224.192.137"
 echo $whitelist
 ipset -A greatbritain-ipv4 $whitelist
 
