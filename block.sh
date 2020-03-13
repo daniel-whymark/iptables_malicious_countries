@@ -73,8 +73,8 @@ ipset create digitalocean-ipv4 hash:net family inet
 
 
 echo "Removing any old zone files that might exist from previous runs of this script..."
-rm /tmp/ipblocks/ipv4/*.zone
-rm /tmp/ipblocks/ipv6/*.zone
+rm -f /tmp/ipblocks/ipv4/*.zone
+rm -f /tmp/ipblocks/ipv6/*.zone
 
 
 echo "Pulling the latest IP sets for required countries..."
@@ -154,6 +154,14 @@ whitelist=`dig -4 @resolver1.opendns.com A myip.opendns.com +short`
 echo $whitelist
 ipset -A greatbritain-ipv4 $whitelist
 whitelist=`dig -6 @resolver1.opendns.com AAAA myip.opendns.com +short`
+echo $whitelist
+ipset -A greatbritain-ipv6 $whitelist
+#
+echo "Adding loopback addresses to Great Britain..."
+whitelist="127.0.0.1"
+echo $whitelist
+ipset -A greatbritain-ipv4 $whitelist
+whitelist="::1"
 echo $whitelist
 ipset -A greatbritain-ipv6 $whitelist
 
