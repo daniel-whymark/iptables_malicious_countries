@@ -27,6 +27,7 @@ ip6tables -D INPUT -m set --match-set thailand-ipv6 src -j DROP
 ip6tables -D INPUT -m set --match-set indonesia-ipv6 src -j DROP
 ip6tables -D INPUT -m set --match-set pakistan-ipv6 src -j DROP
 ip6tables -D INPUT -m set --match-set algeria-ipv6 src -j DROP
+ip6tables -D INPUT -m set --match-set digitalocean-ipv6 src -j DROP
 
 iptables -D DOCKER-USER -m set --match-set china-ipv4 src -j DROP
 iptables -D DOCKER-USER -m set --match-set russia-ipv4 src -j DROP
@@ -70,6 +71,7 @@ ipset create pakistan-ipv6 hash:net family inet6
 ipset create algeria-ipv4 hash:net family inet
 ipset create algeria-ipv6 hash:net family inet6
 ipset create digitalocean-ipv4 hash:net family inet
+ipset create digitalocean-ipv6 hash:net family inet6
 
 
 echo "Removing any old zone files that might exist from previous runs of this script..."
@@ -146,6 +148,7 @@ for i in $(cat /tmp/ipblocks/ipv4/dz-aggregated.zone ); do ipset -A algeria-ipv4
 for i in $(cat /tmp/ipblocks/ipv6/dz-aggregated.zone ); do ipset -A algeria-ipv6 $i; done
 echo "Digital Ocean..."
 for i in $(cat digitalocean-ipv4.txt ); do ipset -A digitalocean-ipv4 $i; done
+for i in $(cat digitalocean-ipv6.txt ); do ipset -A digitalocean-ipv6 $i; done
 
 
 # This can be removed if not needed. Useful for debugging.
@@ -213,6 +216,7 @@ ip6tables -I INPUT -m set --match-set thailand-ipv6 src -j DROP
 ip6tables -I INPUT -m set --match-set indonesia-ipv6 src -j DROP
 ip6tables -I INPUT -m set --match-set pakistan-ipv6 src -j DROP
 ip6tables -I INPUT -m set --match-set algeria-ipv6 src -j DROP
+ip6tables -I INPUT -m set --match-set digitalocean-ipv6 src -j DROP
 ip6tables -I INPUT -p tcp --dport 2222 -m set ! --match-set greatbritain-ipv6 src -j DROP
 
 iptables -I DOCKER-USER -m set --match-set china-ipv4 src -j DROP
