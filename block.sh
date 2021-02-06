@@ -169,6 +169,7 @@ echo $whitelist
 ipset -A greatbritain-ipv6 $whitelist
 
 echo "Adding additional whitelisted entries to Great Britain..."
+# Family
 whitelist=`dig -4 A fieldendroad.uk.to +short`
 echo $whitelist
 ipset -A greatbritain-ipv4 $whitelist
@@ -176,6 +177,12 @@ whitelist=`dig -4 A kingswearcrescent.uk.to +short`
 echo $whitelist
 ipset -A greatbritain-ipv4 $whitelist
 
+# Dave
+whitelist="31.132.34.10"
+echo $whitelist
+ipset -A greatbritain-ipv4 $whitelist
+
+# Communisis
 whitelist="213.212.106.140"
 echo $whitelist
 ipset -A greatbritain-ipv4 $whitelist
