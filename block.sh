@@ -177,10 +177,8 @@ whitelist=`dig -4 A kingswearcrescent.uk.to +short`
 echo $whitelist
 ipset -A greatbritain-ipv4 $whitelist
 
-# Dave
-whitelist="31.132.34.10"
-echo $whitelist
-ipset -A greatbritain-ipv4 $whitelist
+# Dave 31.132.34.10
+ipset del russia-ipv4 31.132.32.0/22
 
 # Communisis
 whitelist="213.212.106.140"
