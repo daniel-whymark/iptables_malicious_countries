@@ -168,32 +168,6 @@ whitelist="::1"
 echo $whitelist
 ipset -A greatbritain-ipv6 $whitelist
 
-echo "Adding additional whitelisted entries to Great Britain..."
-# Family
-whitelist=`dig -4 A fieldendroad.uk.to +short`
-echo $whitelist
-ipset -A greatbritain-ipv4 $whitelist
-whitelist=`dig -4 A kingswearcrescent.uk.to +short`
-echo $whitelist
-ipset -A greatbritain-ipv4 $whitelist
-
-# Dave 31.132.34.10
-ipset del russia-ipv4 31.132.32.0/22
-
-# Communisis
-whitelist="213.212.106.140"
-echo $whitelist
-ipset -A greatbritain-ipv4 $whitelist
-whitelist="213.212.67.156"
-echo $whitelist
-ipset -A greatbritain-ipv4 $whitelist
-whitelist="195.92.116.147"
-echo $whitelist
-ipset -A greatbritain-ipv4 $whitelist
-whitelist="195.224.192.137"
-echo $whitelist
-ipset -A greatbritain-ipv4 $whitelist
-
 
 echo "Restore iptables rules..."
 iptables -I INPUT -m set --match-set china-ipv4 src -j DROP
